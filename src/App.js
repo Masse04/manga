@@ -1,40 +1,21 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Navbar from './Composant/Navbar';
-import Movie from './Composant/Movie';
-import OnePiece from './Composant/One piece.jpg';
-import Naruto from './Composant/naruto.jpg';
-import Bleach from './Composant/bleach.jpg';
-import Hunter from './Composant/hunter.jpg';
-import DragonBall from './Composant/dragonball.jpg';
-import Boruto from './Composant/boruto.jpg';
-import Titans from './Composant/titans.jpg';
-import Baki from './Composant/baki.jpg';
-
+import {BrowserRouter,Routes,Route} from 'react-router-dom';
+import MovieCard from './Composant/MovieCard';
+import MovieList from './Composant/MovieList';
+import Filtre from './Composant/Filtre';
+import DetailsFilm from './Composant/DetailsFilm'
 function App() {
-  let film = [
-    {title : 'One Peace', photo : OnePiece},
-    {title : 'Naruto' , photo : Naruto},
-    {title : 'Bleach', photo : Bleach},
-    {title : 'Hunter', photo : Hunter},
-    {title : 'Dragon ball Z', photo : DragonBall},
-    {title : 'Boruto', photo : Boruto},
-    {title : 'Attaque des Titans', photo : Titans},
-    {title : 'Baki', photo : Baki}
-];
   return (
     <div className="App">
-      
-        <Navbar/>
-        <div className ="manga">
-          {
-        film.map(element => (
-        <Movie item = {element}/>
-        )) }
-        </div>
-
+        <BrowserRouter>
+          <Filtre/>
+          <Routes>
+            <Route path='/' element = {<MovieList/>}/>
+            <Route path='/movieCard' element = {<MovieCard/>}/>
+            <Route path='/detailsFilm/:id' element = {<DetailsFilm/>}/>
+          </Routes>
+        </BrowserRouter>
     </div>
   );
 }
-
 export default App;
